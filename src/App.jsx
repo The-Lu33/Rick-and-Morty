@@ -1,32 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { useState, useEffect } from 'react'
 import './App.css'
+import axios from 'axios';
+import Characters from './components/Characters';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [ricky, setRicky] = useState({});
+  const [typeId, setTypyid] = useState("");
+  useEffect(() => {
+    const randomId = Math.floor(Math.random() * 126) + 1;
+    axios.get(`https://rickandmortyapi.com/api/location/${randomId}`)
+      .then(res => setRicky(res.data))
+  }, [])
+  console.log(ricky);
+  const searchtype = () => {
+    axios.get(`https://rickandmortyapi.com/api/location/${typeId}`)
+      .then(res => setRicky(res.data));
 
+  }
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      hello
+      <input type="text" value={typeId} onChange={e => setTypyid(e.target.value)} />
+      <button onClick={searchtype}>SERCH</button>
+      {ricky.residents?.map(residents => (
+        <Characters url={ricky.residents}
+          key={ricky.residents} />
+      ))}
+      <h2>
+        {ricky.name}
+      </h2>
+      <h3>
+        {ricky.type}
+      </h3>
+      <h3>
+        {ricky.dimension}
+      </h3>
+      <h3>
+        cantidad de residentes: {ricky.residents.length}
+
+      </h3>
+
+
     </div>
   )
 }
