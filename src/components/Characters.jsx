@@ -7,10 +7,10 @@ const Characters = (url) => {
         axios.get(url)
         .then(res=>setCharacterRaM(res.data));
     },[])
-    console.log(characterRaM)
+    // console.log(characterRaM)
     return (
         <div>
-            <li>{url}</li>
+            {/* <li>{url}</li> */}
         </div>
     );
 };
