@@ -5,7 +5,6 @@
 }
 :root{
   --black:#0d0d0d;
-  --white:#F0F2EB;
   --verde-mota:#5BB53E;
   --verde-n:#2A8A41;
   --verde-oscuro:#5CAD4A;
@@ -47,18 +46,16 @@ body{
   border-radius: 10px;
   font-size: 1.2rem;
 }
+::placeholder{
+  color: var(--verde-n);
+}
 button {
-/* position: relative; */
 display: flex;
 align-items: center;
 background: none;
 border: none;
 outline: none;
 cursor: pointer;
-/* right: 1.5rem; */
-
-}
-.search-input-button{
   width: 30px;
   height: 30px;
   background-color: var(--verde-mota);
@@ -150,6 +147,17 @@ hr{
   }
   .container-residents{
     grid-template-columns: repeat(3,1fr);
+  }
+  .search input{
+    height:2.5rem;
+  }
+  button{
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  button img{
+    width: 2rem;
+    height: 2rem;
   }
   .residents{
     width: 220px;

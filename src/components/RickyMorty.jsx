@@ -47,12 +47,12 @@ const RickyMorty = () => {
             onChange={(e) => setTypyid(e.target.value)}
             onKeyPress={handelChange}
           />
-          <div className="search-input-button">
+         
 
           <button onDragEnterCapture={searchtype} onClick={searchtype}>
             <img src="./image/bx-search.svg" alt="" />
           </button>
-          </div>
+         
         </div>
       </div>
       <section className="information">
