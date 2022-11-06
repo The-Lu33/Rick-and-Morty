@@ -26,39 +26,64 @@ const RickyMorty = () => {
       .get(`https://rickandmortyapi.com/api/location/${typeId}`)
       .then((res) => setRicky(res.data));
   };
-
-  // detectar keyup en el input
-  // llamar a la api con el valor del input
-  // guardar el valor del input en un estado
-
+  // detecta el evento enter y ejecuta la funcion searchtype
+  const handelChange = (e) => {
+    if (e.key === "Enter") {
+      searchtype();
+    }
+  };
 
   return (
     <div>
-      <input
-        type="text"
-        value={typeId}
-        placeholder="type id"
-        onChange={(e) => setTypyid(e.target.value)}
-      />
-      <button onClick={searchtype}>Search</button>
-      <h2>name:{ricky.name}</h2>
-      <h3>planeta: {ricky.type}</h3>
-      <h3>dimencion:{ricky.dimension}</h3>
-      <h3>cantidad de residentes: {ricky.residents?.length}</h3>
-       
-      <ul>
-        {ricky.residents?.map((residents)=>(
-          // console.log(resident)  
-       
-          <Characters key={residents} url={residents}/>
-         
-          ))}
-          </ul>
-       
+      <div className="header">
+        <div className="image-container">
+          <img className="" src="image/banner.png" alt="" />
+        </div>
+        <div className="search">
+          <input
+            type="text"
+            value={typeId}
+            placeholder="Type ID"
+            onChange={(e) => setTypyid(e.target.value)}
+            onKeyPress={handelChange}
+          />
+          <div className="search-input-button">
 
+          <button onDragEnterCapture={searchtype} onClick={searchtype}>
+            <img src="./image/bx-search.svg" alt="" />
+          </button>
+          </div>
+        </div>
+      </div>
+      <section className="information">
+        <div className="item1">
+          <h2>Name:</h2>
+          <span>{ricky.name}</span>
+        </div>
+        <div className="item2">
+          <h2>Type:</h2>
+          <span>{ricky.type}</span>
+        </div>
+        <div className="item3">
+          <h2>Dimesion:</h2>
+         <span>
+          {ricky.dimension}
+          </span>
+        </div >
+        <div className="item4">
+          <h2>Poblation:</h2>
+          <span>{ricky.residents?.length}</span>
+        </div>
+      </section>
 
+      <div className="container-residents">
+        {ricky.residents?.map((residents) => (
+          // console.log(residents)
+
+          <Characters key={residents} url={residents} />
+        ))}
+      </div>
     </div>
-
   );
 };
 
